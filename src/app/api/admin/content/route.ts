@@ -28,8 +28,6 @@ export async function PATCH(request: NextRequest) {
     (content.hk as Record<string, unknown>)[section.slice(3)] = data;
   } else if (section === "events_items") {
     content.events_items = data;
-  } else if (section === "sermons_items") {
-    content.sermons_items = data;
   } else if (section === "leaders_items") {
     content.leaders_items = data;
   } else if (section === "buildings_items") {

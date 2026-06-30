@@ -34,9 +34,9 @@ export default function DashboardPage() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           {[
             { label: "Events", value: content.events_items.length },
-            { label: "Sermons", value: content.sermons_items.length },
+            { label: "Gallery", value: content.gallery_items.length },
             { label: "Languages", value: 2 },
-            { label: "Sections", value: 5 },
+            { label: "Leaders", value: content.leaders_items.length },
           ].map((stat) => (
             <div key={stat.label} className="bg-white rounded-2xl p-5 shadow-sm">
               <p className="text-3xl font-bold text-[#C9A454]">{stat.value}</p>
