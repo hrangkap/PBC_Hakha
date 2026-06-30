@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
   const zipBuffer = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
   const safeName = title.replace(/[^a-zA-Z0-9-_ ]/g, "").trim() || "bulletin";
 
-  return new NextResponse(zipBuffer, {
+  return new NextResponse(new Uint8Array(zipBuffer), {
     headers: {
       "Content-Type": "application/zip",
       "Content-Disposition": `attachment; filename="${safeName}.zip"`,
