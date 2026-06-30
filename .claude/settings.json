@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"http://localhost:3000?lang=hk\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000)",
+      "Bash(python3 -c \"import json; json.load\\(open\\('data/content.json'\\)\\)\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/images/leaders/biak-sung.png)",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('/Users/hrangkaplian/Documents/Lian Folder/Project/PBC_Hakha/data/content.json'\\)\\); print\\(json.dumps\\(d.get\\('leaders_items', []\\), indent=2\\)\\)\")",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(npm run *)",
+      "Bash(sleep 5 && tail -15 /tmp/pbc_dev.log)",
+      "Read(//private/tmp/**)",
+      "Bash(xargs cat)",
+      "Bash(rm -rf \"/Users/hrangkaplian/Documents/Lian Folder/Project/PBC_Hakha/.next\")",
+      "Bash(python3 -c \"import json; d=json.load\\(open\\('/Users/hrangkaplian/Documents/Lian Folder/Project/PBC_Hakha/data/content.json'\\)\\); print\\(json.dumps\\(d.get\\('buildings_items', []\\), indent=2\\)\\)\")",
+      "Bash(python3 -c ' *)"
+    ]
+  }
+}

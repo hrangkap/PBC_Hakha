@@ -1,0 +1,584 @@
+{
+  "en": {
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "events": "Events",
+      "gallery": "Gallery",
+      "contact": "Contact"
+    },
+    "hero": {
+      "eyebrow": "Welcome to PBC Hakha",
+      "title": [
+        "Be Still Before the Lord,",
+        "and Wait Patiently",
+        "for Him."
+      ],
+      "sub": "Join us as we grow together in the love and grace of Jesus Christ. All are welcome!",
+      "cta1": "Let's Connect",
+      "cta2": "Up Coming Events"
+    },
+    "infoBar": [
+      {
+        "title": "Sunday Service",
+        "value": "10:00 AM – 12:00 PM"
+      },
+      {
+        "title": "Prayer Meeting",
+        "value": "Wednesday, 7:00 PM"
+      },
+      {
+        "title": "Location",
+        "value": "Hakha, Chin State, Myanmar"
+      }
+    ],
+    "about": {
+      "eyebrow": "About Our Church",
+      "heading": "A Place Where Every\nHeart Finds Home",
+      "p1": "Peniel Baptist Church Hakha is a Christian community dedicated to worshipping God, sharing the Gospel, and serving people with faith, love, and unity. Our church seeks to help individuals and families grow spiritually while building a caring and supportive community.",
+      "p2": "To learn more about our story and how Peniel Baptist Church Hakha was established, please click the “Download” button below. You will receive a PDF file containing the detailed history of our church.",
+      "cta": "Download"
+    },
+    "leaders": {
+      "eyebrow": "Our Leadership",
+      "heading": "Meet Our Leaders",
+      "current": "Current Leaders",
+      "former": "Former Leaders"
+    },
+    "buildings": {
+      "eyebrow": "Memorial Buildings",
+      "heading": "Buildings Built in Loving Memory"
+    },
+    "features": {
+      "eyebrow": "What We Stand For",
+      "heading": "Our Three Pillars",
+      "items": [
+        {
+          "label": "Our Community",
+          "body": "We are a family — united by faith, strengthened by love, and called to serve one another and the world around us.",
+          "link": "Meet the Family →"
+        },
+        {
+          "label": "Our Mission",
+          "body": "To proclaim the Gospel, make disciples of all nations, and demonstrate the Kingdom of God in practical, tangible ways.",
+          "link": "Our Vision →"
+        },
+        {
+          "label": "Get Involved",
+          "body": "From small groups to youth ministry, women's fellowship to worship teams — there is a place for everyone to serve and grow.",
+          "link": "Find Your Place →"
+        }
+      ]
+    },
+    "events": {
+      "eyebrow": "Upcoming Events",
+      "heading": "Join Us for What's Coming",
+      "viewAll": "View All Events",
+      "register": "Register"
+    },
+    "mission": {
+      "eyebrow": "Our Mission",
+      "heading": "Serving with Purpose",
+      "sub": "We are called to proclaim the Gospel, make disciples, and demonstrate the Kingdom of God in practical ways across Hakha and beyond."
+    },
+    "verse": {
+      "text": "For God so loved the world that He gave His one and only Son, that whoever believes in Him shall not perish but have eternal life.",
+      "ref": "John 3:16"
+    },
+    "gallery": {
+      "eyebrow": "Photo Gallery",
+      "heading": "Life at PBC Hakha",
+      "viewAll": "View Full Gallery"
+    },
+    "cta": {
+      "heading": "New to PBC Hakha?",
+      "sub": "We'd love to meet you. Come join us this Sunday and experience the warmth of our church family.",
+      "button": "Plan Your Visit"
+    },
+    "footer": {
+      "tagline": "Growing together in faith, love, and community.",
+      "quickLinks": "Quick Links",
+      "services": "Service Times",
+      "contact": "Contact",
+      "nav": [
+        "Home",
+        "About Us",
+        "Our Mission",
+        "Our Leaders",
+        "Events",
+        "Gallery",
+        "Contact"
+      ],
+      "times": [
+        {
+          "day": "Sunday",
+          "time": "10:00 AM – 12:00 PM",
+          "label": "Morning Worship"
+        },
+        {
+          "day": "Wednesday",
+          "time": "7:00 PM – 8:30 PM",
+          "label": "Prayer Meeting"
+        },
+        {
+          "day": "Friday",
+          "time": "6:30 PM – 8:00 PM",
+          "label": "Youth Service"
+        }
+      ],
+      "address": "Hakha, Chin State, Myanmar",
+      "phone": "+66 0826182827",
+      "email": "info@pbchakha.org",
+      "copy": "© 2025 PBC Hakha Church. All rights reserved."
+    }
+  },
+  "hk": {
+    "nav": {
+      "home": "Inn",
+      "about": "Konglam",
+      "events": "Cawlcanghnak/Puai",
+      "gallery": "Zuk Bawm",
+      "contact": "Pehtlaihnak"
+    },
+    "hero": {
+      "eyebrow": "PBC Hakha In Kan In Don",
+      "title": [
+        "Bawipa kha dai te",
+        "le lungsau tein",
+        "hngak ko."
+      ],
+      "sub": "Jesuh Khrih a dawtnak le a vel ngaihnak tang ah a thang mi kan sinah rak ra ve. Ahopaoh kan in don hna.",
+      "cta1": "Pehtlaihnak",
+      "cta2": "Ara Lai Mi Cawlcanghnak"
+    },
+    "infoBar": [
+      {
+        "title": "Zarhpi Ni Zing Pumhnak",
+        "value": "10:00 AM – 12:00 PM"
+      },
+      {
+        "title": "Thlacamnak",
+        "value": "Nikhatin, 7:00 PM"
+      },
+      {
+        "title": "Amun",
+        "value": "Hakha, Chin Ram, Myanmar"
+      }
+    ],
+    "about": {
+      "eyebrow": "Kan Biakinn Konglam",
+      "heading": "Mi Lungthin Kip ah Inn ah Hmuh Mi Hmun",
+      "p1": "Peniel Baptist Church Hakha cu Pathian biaknak, thawngtha bia i hrawmnak, le zumhnak, dawtnak, le lungrualnak he mi caah rian a ttuanmi Khrihfabu kan si. Kan Khrihfabu nih zohkhenhtu le bawmchantu ding ah zatlangbu dirh buin pumpak le chungkhar hna thlarau lei ah an ṭhancho khawh nakhnga lam a bawl tu kan si.",
+      "p2": "Kan tuanbia le Peniel Baptist Church Hakha dirh a sinak kong fiang deuh in hngalh na duh ahcun a tanglei “Download” timi kha hmet. Kan khrihfabu tuanbia tling tein aa telmi PDF file na hmuh lai.",
+      "cta": "Download"
+    },
+    "leaders": {
+      "eyebrow": "Kan Hruaitu Hna",
+      "heading": "A Kan Hruaitu Hna Hmanthlak Pawl",
+      "current": "Atulio Hruaitu Hna",
+      "former": "Hruaitu Hlun Hna"
+    },
+    "buildings": {
+      "eyebrow": "Philhlonak Inn Pawl",
+      "heading": "Dawtnak He Philhlonak Caah Sakmi Inn Pawl"
+    },
+    "features": {
+      "eyebrow": "Kan Dingah",
+      "heading": "Kawng Thum Fiangtling",
+      "items": [
+        {
+          "label": "Kan Zumhnak",
+          "body": "Kan si ruamhnak — lungngaknak-in ruam, hmunhmam-in zuam, le mino le khawthlang tangko ding.",
+          "link": "Ruamhnak Hmuh →"
+        },
+        {
+          "label": "Kan Tuanbia",
+          "body": "Thuzang gen, thiamnak tein, le Pathian cozah khawthlang-ah hmanfang tein thleng.",
+          "link": "Kan Hin Hmuh →"
+        },
+        {
+          "label": "Rian Ruam",
+          "body": "Hna zumhnak, sungbawi sianginn, mipu pawlpi le biaknak hna — mi zawng zawng-ah hmun an um.",
+          "link": "Hmun Hmuh →"
+        }
+      ]
+    },
+    "events": {
+      "eyebrow": "Cawlcanghnak Tuah Ding Mi Pawl",
+      "heading": "Cawlcanghnak Tuah Ding Mi Ah Rak Kan Tel Pi Ve",
+      "viewAll": "Puai/Cawlcanghnak Dihlak",
+      "register": "Ming Zet"
+    },
+    "mission": {
+      "eyebrow": "Kan Rianttuannak",
+      "heading": "Tinhmi Ngei Bu Tein Rianttuannak",
+      "sub": "Hakha khuachung le Hmun Zakip Ah Thawngtha phuan ding, zultu siter ding le Pathian Pennak Akarh khawhnak ding caah lamhmuhsak khawhnak ding rianttuantu kan si."
+    },
+    "verse": {
+      "text": "Pathian in kha thlalang hmunhmam a si caan, a nupa Pa mi tangko in a pekmi, a man fiang ding, mi zeihmanh sih lo ding, tutan nupi nei ding a si.",
+      "ref": "John 3:16"
+    },
+    "gallery": {
+      "eyebrow": "Zuk Bawm",
+      "heading": "PBC Haka-ah Nunnak",
+      "viewAll": "Zuk Bawm Zawng Zoh"
+    },
+    "cta": {
+      "heading": "PBC Haka-ah Thar Bia?",
+      "sub": "Kan hmuah duh. Thausing kan kan tlang ko le kan sianginn sungbawi hmunhmam hmuh.",
+      "button": "Kan Kan Zam"
+    },
+    "footer": {
+      "tagline": "Zumhnak, Dawtnak le Zatlang Bu sinah thang ti hna usih!",
+      "quickLinks": "Khulrang in Kalnak",
+      "services": "Caanhmannak",
+      "contact": "Pehtlaihnak",
+      "nav": [
+        "Inn",
+        "Kan Konglam",
+        "Kan Riantuannak",
+        "Kan Hruaitu Hna",
+        "Cawlcanghnak/Puai",
+        "Zuk Bawm",
+        "Pehtlaihnak"
+      ],
+      "times": [
+        {
+          "day": "10 July 2026",
+          "time": "10:00 AM – 12:00 PM",
+          "label": "Zarhpi Ni Zing Pumhnak"
+        },
+        {
+          "day": "15 July 2025",
+          "time": "7:00 PM – 8:30 PM",
+          "label": "Nubu Thlacamnak"
+        },
+        {
+          "day": "16 July 2025",
+          "time": "6:30 PM – 8:00 PM",
+          "label": "Mino Caanhmannak"
+        }
+      ],
+      "address": "Hakha, Chin Ram, Myanmar",
+      "phone": "+66 0826182827",
+      "email": "info@pbchakha.org",
+      "copy": "© 2025 PBC Haka Pawlpi. Hna thawng kan zet."
+    }
+  },
+  "events_items": [
+    {
+      "id": "2",
+      "day": "22",
+      "month": "Jun",
+      "time": "6:00 PM",
+      "title_en": "Prayer & Fasting Week",
+      "place_en": "PBC Chapel",
+      "title_hk": "Rawl Ulh Thlacamnak",
+      "place_hk": "PBC Chapel"
+    },
+    {
+      "id": "3",
+      "day": "29",
+      "month": "Jun",
+      "time": "8:00 AM",
+      "title_en": "Community Day",
+      "place_en": "Hakha Town Centre",
+      "title_hk": "Zatlangbu Ni",
+      "place_hk": "Haka Khua"
+    },
+    {
+      "id": "1780069650829",
+      "day": "10",
+      "month": "February",
+      "time": "10:00 PM",
+      "title_en": "Young Activities",
+      "place_en": "PBC",
+      "title_hk": "Mino Cawlcanghnak",
+      "place_hk": "PBC"
+    }
+  ],
+  "sermons_items": [
+    {
+      "id": "1",
+      "title_en": "Walking in Faith",
+      "title_hk": "Lungngaknak-in Zawl",
+      "speaker": "Ps. David Thang",
+      "scripture": "Hebrews 11:1–6",
+      "date": "Jun 8, 2025"
+    },
+    {
+      "id": "2",
+      "title_en": "The Grace of God",
+      "title_hk": "Pathian Nalduhnak",
+      "speaker": "Ps. John Lian",
+      "scripture": "Ephesians 2:1–10",
+      "date": "Jun 1, 2025"
+    },
+    {
+      "id": "3",
+      "title_en": "New Life in Christ",
+      "title_hk": "Krist-in Nupi Thar",
+      "speaker": "Ps. David Thang",
+      "scripture": "2 Corinthians 5:17",
+      "date": "May 25, 2025"
+    }
+  ],
+  "leaders_items": [
+    {
+      "id": "1782205946471",
+      "image": "/images/leaders/chan-lian.png",
+      "name": "Rev Chan Lian",
+      "position_en": "Church Pastor",
+      "position_hk": "Biakinn Pastor",
+      "term": "2012 - Present",
+      "status": "current"
+    },
+    {
+      "id": "1782206010876",
+      "image": "/images/leaders/hniang-tial.png",
+      "name": "Pastor Hniang Tial",
+      "position_en": "Church Secretary & Woman Pastor",
+      "position_hk": "Biakinn Chungtuantu le Nubu Pastor",
+      "term": "2008 - Present",
+      "status": "current"
+    },
+    {
+      "id": "1782206084828",
+      "image": "/images/leaders/cung-ceu-lian.png",
+      "name": "Pastor Cung Ceu Lian",
+      "position_en": "Men & Daycare Pastor",
+      "position_hk": "Pebu Zohkhenhtu Pastor",
+      "term": "2016 - Present",
+      "status": "current"
+    },
+    {
+      "id": "1782206142286",
+      "image": "/images/leaders/thang-za-hnin.png",
+      "name": "Pastor Thang Za Hnin",
+      "position_en": "Youth & CE Pastor",
+      "position_hk": "Mino & Hngakchia Pastor",
+      "term": "2023 - Present",
+      "status": "current"
+    },
+    {
+      "id": "1782206197166",
+      "image": "/images/leaders/cung-lian-thawng.png",
+      "name": "Pastor Cung Lian Thawng ",
+      "position_en": "ICBM Mission Director",
+      "position_hk": "ICBM Mission Director",
+      "term": "2024 - Present",
+      "status": "current"
+    },
+    {
+      "id": "1782206309517",
+      "image": "/images/leaders/khar-nawn.png",
+      "name": "Rev Khar Nawn",
+      "position_en": "1st Church Senior Pastor",
+      "position_hk": "Avoi 1 nak bik Biakinn Pastor",
+      "term": "1 January 2007 - 11 November 2007 (Late)",
+      "status": "former"
+    },
+    {
+      "id": "1782206373025",
+      "image": "/images/leaders/ceu-ham.png",
+      "name": "Rev Dr. Ceu Ham",
+      "position_en": "Church Pastor",
+      "position_hk": "Biakinn Pastor",
+      "term": "2009 - 2015 (Retired)",
+      "status": "former"
+    },
+    {
+      "id": "1782206453057",
+      "image": "/images/leaders/fam-tin-tial.png",
+      "name": "Sayama Fam Tin Tial  ",
+      "position_en": "Officer",
+      "position_hk": "Zungriantuantu",
+      "term": "15 August 2007 - 31 August 2008 (Retired)",
+      "status": "former"
+    },
+    {
+      "id": "1782206514829",
+      "image": "/images/leaders/biak-sung.png",
+      "name": "Pastor Biak Sung",
+      "position_en": "Pastor",
+      "position_hk": "Pastor",
+      "term": "5 March 2021 - 4 April 2022 (Late)",
+      "status": "former"
+    }
+  ],
+  "buildings_items": [
+    {
+      "id": "1",
+      "image": "/images/BiakSung_Villa.png",
+      "name_en": "BiakSung Villa",
+      "name_hk": "BiakSung Villa",
+      "caption_en": "Built in loving memory of...",
+      "caption_hk": "Theihnak-in a sa...",
+      "history_en": "BiakSung Villa was built in loving memory of a beloved member of our church family whose generosity and devotion to God left a lasting mark on the PBC Hakha community. Construction was made possible through the gifts of family members and friends who wished to honor a life of faith, service, and quiet sacrifice. Today the villa serves as a gathering place for fellowship, prayer, and ministry activities, standing as a lasting tribute to the legacy of faith passed down to future generations.",
+      "history_hk": "Khar Nawn Villa kan timi inn hi kum 2018, May 17 ah Pu Bawi Hu inn Sing 1400 in kan rak cawkmi inn a si. Peniel Biakinn cu a hmet deuh caah le pehnak ding hmunhma kan ngeih ti lo caah Biakinn pehnak hmunhma ruah ah rak cawk mi a si. A hnulei ah Coka a um ii cucu kan theh hnuah Biakinn peh nakah kan hman. Inn pi le inn tang hi Pastor Thang Za Hnin te nih kum 2024, July 1 in an umnak. Rev Khar Nawn cu Peniel Baptist Church ah caantling riantuantu in kum 2007, February 1 ah rak lak a si i, kum khat a tuan hlan November 27 ah chunglei dam lonak in mual a kan liam tak mi kan Pastor hmasabik a si. Cucah amah min chiahnak caah tiin hi inn cawkmi cu “Khar Nawn Villa” tiah kan auh."
+    },
+    {
+      "id": "2",
+      "image": "/images/Kindergarten_Villa.png",
+      "name_en": "Kindergarten Villa",
+      "name_hk": "Kindergarten Villa",
+      "caption_en": "Built in loving memory of...",
+      "caption_hk": "Theihnak-in a sa...",
+      "history_en": "Kindergarten Villa was built in loving memory of a faithful servant of God who dedicated much of their life to the education and nurture of young children in the Hakha community. Families and church members came together to fund the construction as a tribute to that lifelong commitment to the next generation. The building now houses the churchs kindergarten classes, giving local children a warm and safe place to learn, play, and grow in faith from an early age.",
+      "history_hk": "Kindergarten Villa hi Pathian rian thawktu pakhat, Haka khuanin fanu le ngakchia hna cawnpiaknak le khaltunnak ah a nun chungkhar a pek mi thlaktlak in sa a si. A chungkhar le pawlpi mi hna nih mino caah a hmangaihnak hi tlangpi awkah an vun a si. Tuhin hi inn hi pawlpi kindergarten sianginn ah a hman, hmun a hmunhmam le nungkam tein ngakchia hna nih an cawn, an dem le zumhnak ah an khang khawhnak ah a si."
+    },
+    {
+      "id": "1782215549367",
+      "image": "/images/buildings/kharnawn_villa.png",
+      "name_en": "Khar Nawn Villa",
+      "name_hk": "Khar Nawn Inn",
+      "caption_en": "Khar Nawn Inn cu ....",
+      "caption_hk": "Khar Nawn Inn cu ....",
+      "history_en": "Khar Nawn Villa kan timi inn hi kum 2018, May 17 ah Pu Bawi Hu inn Sing 1400 in kan rak cawkmi inn a si. Peniel Biakinn cu a hmet deuh caah le pehnak ding hmunhma kan ngeih ti lo caah Biakinn pehnak hmunhma ruah ah rak cawk mi a si. A hnulei ah Coka a um ii cucu kan theh hnuah Biakinn peh nakah kan hman. Inn pi le inn tang hi Pastor Thang Za Hnin te nih kum 2024, July 1 in an umnak. Rev Khar Nawn cu Peniel Baptist Church ah caantling riantuantu in kum 2007, February 1 ah rak lak a si i, kum khat a tuan hlan November 27 ah chunglei dam lonak in mual a kan liam tak mi kan Pastor hmasabik a si. Cucah amah min chiahnak caah tiin hi inn cawkmi cu “Khar Nawn Villa” tiah kan auh.",
+      "history_hk": "Khar Nawn Villa kan timi inn hi kum 2018, May 17 ah Pu Bawi Hu inn Sing 1400 in kan rak cawkmi inn a si. Peniel Biakinn cu a hmet deuh caah le pehnak ding hmunhma kan ngeih ti lo caah Biakinn pehnak hmunhma ruah ah rak cawk mi a si. A hnulei ah Coka a um ii cucu kan theh hnuah Biakinn peh nakah kan hman. Inn pi le inn tang hi Pastor Thang Za Hnin te nih kum 2024, July 1 in an umnak. Rev Khar Nawn cu Peniel Baptist Church ah caantling riantuantu in kum 2007, February 1 ah rak lak a si i, kum khat a tuan hlan November 27 ah chunglei dam lonak in mual a kan liam tak mi kan Pastor hmasabik a si. Cucah amah min chiahnak caah tiin hi inn cawkmi cu “Khar Nawn Villa” tiah kan auh."
+    }
+  ],
+  "gallery_items": [
+    {
+      "id": "1",
+      "caption_en": "Sunday Worship",
+      "caption_hk": "Zarhpi Ni Pumhnak",
+      "image": "/images/gallery/1/1782740579779-ceu-ham.png",
+      "images": [
+        "/images/gallery/1/1782740579779-ceu-ham.png",
+        "/images/gallery/1/1782740579805-chan-lian.png",
+        "/images/gallery/1/1782740579828-cung-ceu-lian.png",
+        "/images/gallery/1/1782740579859-cung-lian-thawng.png",
+        "/images/gallery/1/1782740579878-fam-tin-tial.png"
+      ]
+    },
+    {
+      "id": "2",
+      "caption_en": "Youth Ministry",
+      "caption_hk": "Mino Riantuannak",
+      "image": "/images/gallery/2/1782740747845-chatgpt-image-jun-12-2026-at-02_56_09-pm.png",
+      "images": [
+        "/images/gallery/2/1782740747845-chatgpt-image-jun-12-2026-at-02_56_09-pm.png",
+        "/images/gallery/2/1782740747905-chatgpt-image-jun-12-2026-at-02_58_49-pm.png",
+        "/images/gallery/2/1782740747936-chatgpt-image-jun-12-2026-at-03_21_43-pm.png",
+        "/images/gallery/2/1782740747963-chatgpt-image-jun-12-2026-at-11_41_38-am.png"
+      ]
+    },
+    {
+      "id": "3",
+      "caption_en": "Community Service",
+      "caption_hk": "Zatlang Bu Zohkhenhnak",
+      "image": "/images/gallery/3/1782740760116-dsc05748.jpg",
+      "images": [
+        "/images/gallery/3/1782740760116-dsc05748.jpg",
+        "/images/gallery/3/1782740760178-dsc05750.jpg",
+        "/images/gallery/3/1782740760223-dsc05754.jpg",
+        "/images/gallery/3/1782740760252-dsc05755.jpg"
+      ]
+    },
+    {
+      "id": "4",
+      "caption_en": "Choir & Praise",
+      "caption_hk": "Chior & Thangthatnak",
+      "image": "/images/gallery/choir/choir_14.jpg",
+      "images": [
+        "/images/gallery/choir/choir_1.jpg",
+        "/images/gallery/choir/choir_2.jpg",
+        "/images/gallery/choir/choir_3.jpg",
+        "/images/gallery/choir/choir_4.jpg",
+        "/images/gallery/choir/choir_5.jpg",
+        "/images/gallery/choir/choir_6.jpg",
+        "/images/gallery/choir/choir_7.jpg",
+        "/images/gallery/choir/choir_8.jpg",
+        "/images/gallery/choir/choir_9.jpg",
+        "/images/gallery/choir/choir_10.jpg",
+        "/images/gallery/choir/choir_11.jpg",
+        "/images/gallery/choir/choir_12.jpg",
+        "/images/gallery/choir/choir_13.jpg",
+        "/images/gallery/choir/choir_14.jpg"
+      ]
+    },
+    {
+      "id": "5",
+      "caption_en": "Prayer Night",
+      "caption_hk": "Thlacamnak",
+      "image": "/images/gallery/5/1782740773618-chinland-tech-bg.png",
+      "images": [
+        "/images/gallery/5/1782740773618-chinland-tech-bg.png",
+        "/images/gallery/5/1782740773637-chinland-tech-talks-3.png",
+        "/images/gallery/5/1782740773646-cl_tech.png"
+      ]
+    },
+    {
+      "id": "6",
+      "caption_en": "Church Fellowship",
+      "caption_hk": "Biakinn Hawikomhnak",
+      "image": "/images/gallery/6/1782740790752-1143024-3840x2160-desktop-4k-robot-background.jpg",
+      "images": [
+        "/images/gallery/6/1782740790752-1143024-3840x2160-desktop-4k-robot-background.jpg",
+        "/images/gallery/6/1782740790785-1143176-2560x1600-desktop-hd-robot-background-photo.jpg",
+        "/images/gallery/6/1782740790813-1143184-3840x2160-desktop-4k-robot-wallpaper-image.jpg"
+      ]
+    },
+    {
+      "id": "1782741481486",
+      "caption_en": "New Album",
+      "caption_hk": "Album That",
+      "image": "/images/gallery/new-1782741463032/1782741479528-cung-lian-thawng.png",
+      "images": [
+        "/images/gallery/new-1782741463032/1782741479528-cung-lian-thawng.png",
+        "/images/gallery/new-1782741463032/1782741479567-fam-tin-tial.png"
+      ]
+    }
+  ],
+  "bulletin_items": [
+    {
+      "id": "1782219947586",
+      "title": "Good Friday",
+      "date": "12 April 2026",
+      "files": [
+        "/images/bulletins/screenshot-2026-06-23-at-19-52-49.png",
+        "/images/bulletins/screenshot-2026-06-23-at-19-53-02.png"
+      ]
+    }
+  ],
+  "mission_items": [
+    {
+      "id": "1782268426131",
+      "title_en": "Youth Activities in Hakha",
+      "title_hk": "Hakha ah Mino Cawlcanghnak",
+      "description_en": "This is the mission activity from PCB Youth in Hakha cleaning the Church combine area",
+      "description_hk": "Pathian caah PBC mino nih rian kan tuannak asi",
+      "image": "/images/mission/mino_choir_11.jpg",
+      "blocks": [
+        {
+          "type": "image",
+          "src": "/images/mission/12449897-950e-4b60-a100-6273f74ed02e.png",
+          "caption_en": "Hrang Kap Lian",
+          "caption_hk": "Hrang Kap Lian",
+          "size": "medium",
+          "align": "center"
+        },
+        {
+          "type": "text",
+          "en": "Hrang Kap Lian cu PBC website a kan ser piak tu asi",
+          "hk": "Hrang Kap Lian cu PBC website a kan ser piak tu asi"
+        },
+        {
+          "type": "image",
+          "src": "/images/mission/chan-lian.png",
+          "caption_en": "Pastore Chan Lian",
+          "caption_hk": "Pastor ChanLian",
+          "size": "small",
+          "align": "left"
+        },
+        {
+          "type": "text",
+          "en": "Chan Lian Cu Senior Pastor asi.",
+          "hk": "Chan Lian Cu Senior Pastor asi."
+        }
+      ]
+    }
+  ],
+  "activeTheme": "default"
+}

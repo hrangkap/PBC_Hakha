@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  body {
+    color: #2c2c2c;
+  }
+}
+
+/* Outside any layer — highest priority, always overrides Tailwind utilities */
+.admin-sidebar,
+.admin-sidebar a,
+.admin-sidebar button,
+.admin-sidebar span,
+.admin-sidebar p {
+  color: white !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.mission-page-enter {
+  animation: slide-in-right 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(-52vh) translateX(12px);
+    opacity: 0.4;
+  }
+  88% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(-108vh) translateX(-8px);
+    opacity: 0;
+  }
+}
