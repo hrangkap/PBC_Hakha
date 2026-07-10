@@ -40,6 +40,8 @@ export async function PATCH(request: NextRequest) {
     content.gallery_items = data;
   } else if (section === "activeTheme") {
     content.activeTheme = data;
+  } else if (section === "branding") {
+    content.branding = data;
   }
 
   writeContent(content);

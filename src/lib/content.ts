@@ -96,6 +96,19 @@ export type LangContent = {
 
 export type SeasonTheme = "default" | "christmas" | "good-friday" | "easter";
 
+export type BrandingConfig = {
+  churchName_en: string;
+  churchName_hk: string;
+  subtitle_en: string;
+  subtitle_hk: string;
+  logoUrl: string;
+  heroImageUrl: string;
+  aboutImageUrl: string;
+  facebookUrl: string;
+  youtubeUrl: string;
+  instagramUrl: string;
+};
+
 export type SiteContent = {
   en: LangContent;
   hk: LangContent;
@@ -106,6 +119,7 @@ export type SiteContent = {
   bulletin_items: BulletinItem[];
   mission_items: MissionItem[];
   activeTheme: SeasonTheme;
+  branding: BrandingConfig;
 };
 
 export function readContent(): SiteContent {

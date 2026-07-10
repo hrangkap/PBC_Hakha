@@ -580,5 +580,17 @@
       ]
     }
   ],
-  "activeTheme": "default"
+  "activeTheme": "default",
+  "branding": {
+    "churchName_en": "PBC Hakha",
+    "churchName_hk": "PBC Hakha",
+    "subtitle_en": "Church",
+    "subtitle_hk": "Pawlpi",
+    "logoUrl": "/images/church_logo.png",
+    "heroImageUrl": "/images/church_outside.png",
+    "aboutImageUrl": "/images/church_outside.png",
+    "facebookUrl": "https://www.facebook.com/profile.php?id=61585721172230",
+    "youtubeUrl": "",
+    "instagramUrl": ""
+  }
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import type { SiteContent, BuildingItem, BulletinItem, GalleryItem, LeaderItem, MissionItem, SeasonTheme } from "@/lib/content";
+import type { SiteContent, BuildingItem, BulletinItem, GalleryItem, LeaderItem, MissionItem, SeasonTheme, BrandingConfig } from "@/lib/content";
 
 // ─── THEME CONFIG ──────────────────────────────────────────────────────────────
 type ThemeColors = {
@@ -427,6 +427,15 @@ export default function HomePage({ content }: { content: SiteContent }) {
 
   const tc = THEME_COLORS[content.activeTheme ?? "default"];
   const isChristmas = content.activeTheme === "christmas";
+  const b: BrandingConfig = content.branding ?? {
+    churchName_en: "PBC Hakha", churchName_hk: "PBC Hakha",
+    subtitle_en: "Church", subtitle_hk: "Pawlpi",
+    logoUrl: "/images/church_logo.png",
+    heroImageUrl: "/images/church_outside.png",
+    aboutImageUrl: "/images/church_outside.png",
+    facebookUrl: "https://www.facebook.com/profile.php?id=61585721172230",
+    youtubeUrl: "", instagramUrl: "",
+  };
 
   function showBuilding(offset: number) {
     const buildings = content.buildings_items;
@@ -486,20 +495,20 @@ export default function HomePage({ content }: { content: SiteContent }) {
             {/* Logo */}
             <a href="#home" className="flex items-center gap-3">
               <img
-                src="/images/church_logo.png"
-                alt="PBC Hakha Church Logo"
+                src={b.logoUrl}
+                alt={`${lang === "en" ? b.churchName_en : b.churchName_hk} Logo`}
                 className="h-14 w-auto object-contain shrink-0"
               />
               <div>
                 <p
                   className={`font-bold text-sm leading-none ${scrolled ? "text-[#1A2E4A]" : "text-[#1A2E4A] lg:text-[#C9A454]"}`}
                 >
-                  PBC Hakha
+                  {lang === "en" ? b.churchName_en : b.churchName_hk}
                 </p>
                 <p
                   className={`text-xs mt-0.5 ${scrolled ? "text-gray-400" : "text-gray-400 lg:text-white/75"}`}
                 >
-                  {lang === "en" ? "Church" : "Pawlpi"}
+                  {lang === "en" ? b.subtitle_en : b.subtitle_hk}
                 </p>
               </div>
             </a>
@@ -660,7 +669,7 @@ export default function HomePage({ content }: { content: SiteContent }) {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: isChristmas ? "url('/images/Christmas.png')" : "url('/images/church_outside.png')",
+            backgroundImage: isChristmas ? "url('/images/Christmas.png')" : `url('${b.heroImageUrl}')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -750,7 +759,7 @@ export default function HomePage({ content }: { content: SiteContent }) {
             {/* Image */}
             <div className="relative">
               <div className="rounded-3xl overflow-hidden aspect-[4/5] flex items-end relative">
-                <img src="/images/church_outside.png" alt="PBC Hakha Church" className="absolute inset-0 w-full h-full object-cover" />
+                <img src={b.aboutImageUrl} alt={lang === "en" ? b.churchName_en : b.churchName_hk} className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 <div className="relative p-8 text-white">
                   <p className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: tc.accent }}>
@@ -1452,13 +1461,13 @@ export default function HomePage({ content }: { content: SiteContent }) {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 <img
-                  src="/images/church_logo.png"
-                  alt="PBC Hakha Church Logo"
+                  src={b.logoUrl}
+                  alt={`${lang === "en" ? b.churchName_en : b.churchName_hk} Logo`}
                   className="h-14 w-auto object-contain shrink-0"
                 />
                 <div>
-                  <p className="font-bold text-sm">PBC Hakha</p>
-                  <p className="text-white/40 text-xs">{lang === "en" ? "Church" : "Pawlpi"}</p>
+                  <p className="font-bold text-sm">{lang === "en" ? b.churchName_en : b.churchName_hk}</p>
+                  <p className="text-white/40 text-xs">{lang === "en" ? b.subtitle_en : b.subtitle_hk}</p>
                 </div>
               </div>
               <p className="text-white/45 text-sm leading-relaxed mb-6">{l.footer.tagline}</p>
@@ -1466,9 +1475,9 @@ export default function HomePage({ content }: { content: SiteContent }) {
               <div className="flex gap-3">
                 {(["facebook", "youtube", "instagram"] as const).map((s) => {
                   const hrefs = {
-                    facebook: "https://www.facebook.com/profile.php?id=61585721172230",
-                    youtube:  "#",
-                    instagram:"#",
+                    facebook: b.facebookUrl || "#",
+                    youtube:  b.youtubeUrl  || "#",
+                    instagram:b.instagramUrl|| "#",
                   };
                   return (
                   <a
