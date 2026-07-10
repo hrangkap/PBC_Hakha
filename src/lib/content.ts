@@ -85,7 +85,7 @@ export type LangContent = {
   events: { eyebrow: string; heading: string; viewAll: string; register: string };
   verse: { text: string; ref: string };
   gallery: { eyebrow: string; heading: string; viewAll: string };
-  cta: { heading: string; sub: string; button: string };
+  cta: { heading: string; sub: string; button: string; placeholder: string; successMsg: string; errorMsg: string };
   footer: {
     tagline: string; quickLinks: string; services: string; contact: string;
     nav: string[];

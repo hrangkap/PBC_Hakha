@@ -91,9 +91,12 @@
       "viewAll": "View Full Gallery"
     },
     "cta": {
-      "heading": "New to PBC Hakha?",
-      "sub": "We'd love to meet you. Come join us this Sunday and experience the warmth of our church family.",
-      "button": "Plan Your Visit"
+      "heading": "Stay Connected with PBC Hakha",
+      "sub": "Subscribe to receive our latest news, events, and activities directly in your inbox.",
+      "button": "Subscribe",
+      "placeholder": "Enter your email address",
+      "successMsg": "Thank you! You have been subscribed successfully.",
+      "errorMsg": "Something went wrong. Please try again."
     },
     "footer": {
       "tagline": "Growing together in faith, love, and community.",
@@ -224,9 +227,12 @@
       "viewAll": "Zuk Bawm Zawng Zoh"
     },
     "cta": {
-      "heading": "PBC Haka-ah Thar Bia?",
-      "sub": "Kan hmuah duh. Thausing kan kan tlang ko le kan sianginn sungbawi hmunhmam hmuh.",
-      "button": "Kan Kan Zam"
+      "heading": "PBC Hakha He Pehtlaihnak",
+      "sub": "Thawngtha thar, cawlcanghnak le hna pawl na inbox-ah dirh theih nading na email rak zet rawh.",
+      "button": "Subscribe",
+      "placeholder": "Email address na zet",
+      "successMsg": "Lawmh can! Na register a tling.",
+      "errorMsg": "A hlan lo. Thar in ttuan ko."
     },
     "footer": {
       "tagline": "Zumhnak, Dawtnak le Zatlang Bu sinah thang ti hna usih!",
@@ -438,99 +444,7 @@
       "history_hk": "Khar Nawn Villa kan timi inn hi kum 2018, May 17 ah Pu Bawi Hu inn Sing 1400 in kan rak cawkmi inn a si. Peniel Biakinn cu a hmet deuh caah le pehnak ding hmunhma kan ngeih ti lo caah Biakinn pehnak hmunhma ruah ah rak cawk mi a si. A hnulei ah Coka a um ii cucu kan theh hnuah Biakinn peh nakah kan hman. Inn pi le inn tang hi Pastor Thang Za Hnin te nih kum 2024, July 1 in an umnak. Rev Khar Nawn cu Peniel Baptist Church ah caantling riantuantu in kum 2007, February 1 ah rak lak a si i, kum khat a tuan hlan November 27 ah chunglei dam lonak in mual a kan liam tak mi kan Pastor hmasabik a si. Cucah amah min chiahnak caah tiin hi inn cawkmi cu “Khar Nawn Villa” tiah kan auh."
     }
   ],
-  "gallery_items": [
-    {
-      "id": "1",
-      "caption_en": "Sunday Worship",
-      "caption_hk": "Zarhpi Ni Pumhnak",
-      "image": "/images/gallery/1/1782740579779-ceu-ham.png",
-      "images": [
-        "/images/gallery/1/1782740579779-ceu-ham.png",
-        "/images/gallery/1/1782740579805-chan-lian.png",
-        "/images/gallery/1/1782740579828-cung-ceu-lian.png",
-        "/images/gallery/1/1782740579859-cung-lian-thawng.png",
-        "/images/gallery/1/1782740579878-fam-tin-tial.png"
-      ]
-    },
-    {
-      "id": "2",
-      "caption_en": "Youth Ministry",
-      "caption_hk": "Mino Riantuannak",
-      "image": "/images/gallery/2/1782740747845-chatgpt-image-jun-12-2026-at-02_56_09-pm.png",
-      "images": [
-        "/images/gallery/2/1782740747845-chatgpt-image-jun-12-2026-at-02_56_09-pm.png",
-        "/images/gallery/2/1782740747905-chatgpt-image-jun-12-2026-at-02_58_49-pm.png",
-        "/images/gallery/2/1782740747936-chatgpt-image-jun-12-2026-at-03_21_43-pm.png",
-        "/images/gallery/2/1782740747963-chatgpt-image-jun-12-2026-at-11_41_38-am.png"
-      ]
-    },
-    {
-      "id": "3",
-      "caption_en": "Community Service",
-      "caption_hk": "Zatlang Bu Zohkhenhnak",
-      "image": "/images/gallery/3/1782740760116-dsc05748.jpg",
-      "images": [
-        "/images/gallery/3/1782740760116-dsc05748.jpg",
-        "/images/gallery/3/1782740760178-dsc05750.jpg",
-        "/images/gallery/3/1782740760223-dsc05754.jpg",
-        "/images/gallery/3/1782740760252-dsc05755.jpg"
-      ]
-    },
-    {
-      "id": "4",
-      "caption_en": "Choir & Praise",
-      "caption_hk": "Chior & Thangthatnak",
-      "image": "/images/gallery/choir/choir_14.jpg",
-      "images": [
-        "/images/gallery/choir/choir_1.jpg",
-        "/images/gallery/choir/choir_2.jpg",
-        "/images/gallery/choir/choir_3.jpg",
-        "/images/gallery/choir/choir_4.jpg",
-        "/images/gallery/choir/choir_5.jpg",
-        "/images/gallery/choir/choir_6.jpg",
-        "/images/gallery/choir/choir_7.jpg",
-        "/images/gallery/choir/choir_8.jpg",
-        "/images/gallery/choir/choir_9.jpg",
-        "/images/gallery/choir/choir_10.jpg",
-        "/images/gallery/choir/choir_11.jpg",
-        "/images/gallery/choir/choir_12.jpg",
-        "/images/gallery/choir/choir_13.jpg",
-        "/images/gallery/choir/choir_14.jpg"
-      ]
-    },
-    {
-      "id": "5",
-      "caption_en": "Prayer Night",
-      "caption_hk": "Thlacamnak",
-      "image": "/images/gallery/5/1782740773618-chinland-tech-bg.png",
-      "images": [
-        "/images/gallery/5/1782740773618-chinland-tech-bg.png",
-        "/images/gallery/5/1782740773637-chinland-tech-talks-3.png",
-        "/images/gallery/5/1782740773646-cl_tech.png"
-      ]
-    },
-    {
-      "id": "6",
-      "caption_en": "Church Fellowship",
-      "caption_hk": "Biakinn Hawikomhnak",
-      "image": "/images/gallery/6/1782740790752-1143024-3840x2160-desktop-4k-robot-background.jpg",
-      "images": [
-        "/images/gallery/6/1782740790752-1143024-3840x2160-desktop-4k-robot-background.jpg",
-        "/images/gallery/6/1782740790785-1143176-2560x1600-desktop-hd-robot-background-photo.jpg",
-        "/images/gallery/6/1782740790813-1143184-3840x2160-desktop-4k-robot-wallpaper-image.jpg"
-      ]
-    },
-    {
-      "id": "1782741481486",
-      "caption_en": "New Album",
-      "caption_hk": "Album That",
-      "image": "/images/gallery/new-1782741463032/1782741479528-cung-lian-thawng.png",
-      "images": [
-        "/images/gallery/new-1782741463032/1782741479528-cung-lian-thawng.png",
-        "/images/gallery/new-1782741463032/1782741479567-fam-tin-tial.png"
-      ]
-    }
-  ],
+  "gallery_items": [],
   "bulletin_items": [
     {
       "id": "1782219947586",
@@ -542,50 +456,13 @@
       ]
     }
   ],
-  "mission_items": [
-    {
-      "id": "1782268426131",
-      "title_en": "Youth Activities in Hakha",
-      "title_hk": "Hakha ah Mino Cawlcanghnak",
-      "description_en": "This is the mission activity from PCB Youth in Hakha cleaning the Church combine area",
-      "description_hk": "Pathian caah PBC mino nih rian kan tuannak asi",
-      "image": "/images/mission/mino_choir_11.jpg",
-      "blocks": [
-        {
-          "type": "image",
-          "src": "/images/mission/12449897-950e-4b60-a100-6273f74ed02e.png",
-          "caption_en": "Hrang Kap Lian",
-          "caption_hk": "Hrang Kap Lian",
-          "size": "medium",
-          "align": "center"
-        },
-        {
-          "type": "text",
-          "en": "Hrang Kap Lian cu PBC website a kan ser piak tu asi",
-          "hk": "Hrang Kap Lian cu PBC website a kan ser piak tu asi"
-        },
-        {
-          "type": "image",
-          "src": "/images/mission/chan-lian.png",
-          "caption_en": "Pastore Chan Lian",
-          "caption_hk": "Pastor ChanLian",
-          "size": "small",
-          "align": "left"
-        },
-        {
-          "type": "text",
-          "en": "Chan Lian Cu Senior Pastor asi.",
-          "hk": "Chan Lian Cu Senior Pastor asi."
-        }
-      ]
-    }
-  ],
+  "mission_items": [],
   "activeTheme": "default",
   "branding": {
-    "churchName_en": "PBC Hakha",
-    "churchName_hk": "PBC Hakha",
-    "subtitle_en": "Church",
-    "subtitle_hk": "Pawlpi",
+    "churchName_en": "PBC",
+    "churchName_hk": "PBC",
+    "subtitle_en": "Hakha",
+    "subtitle_hk": "Hakha",
     "logoUrl": "/images/church_logo.png",
     "heroImageUrl": "/images/church_outside.png",
     "aboutImageUrl": "/images/church_outside.png",

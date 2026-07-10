@@ -13,9 +13,11 @@ const NAV = [
   { label: "Leaders",      href: "/admin/dashboard/leaders",   icon: "✦" },
   { label: "Gallery",      href: "/admin/dashboard/gallery",   icon: "🖼" },
   { label: "Bulletins",    href: "/admin/dashboard/bulletins", icon: "📋" },
-  { label: "Theme",        href: "/admin/dashboard/theme",     icon: "🎨" },
-  { label: "Events",       href: "/admin/dashboard/events",    icon: "◷" },
-  { label: "General",      href: "/admin/dashboard/general",   icon: "⚙" },
+  { label: "Theme",        href: "/admin/dashboard/theme",       icon: "🎨" },
+  { label: "Events",       href: "/admin/dashboard/events",      icon: "◷" },
+  { label: "Subscribe",    href: "/admin/dashboard/subscribe",   icon: "✉" },
+  { label: "Subscribers",  href: "/admin/dashboard/subscribers", icon: "👥" },
+  { label: "General",      href: "/admin/dashboard/general",     icon: "⚙" },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
