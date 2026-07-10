@@ -12,6 +12,7 @@ const NAV = [
   { label: "Buildings",    href: "/admin/dashboard/buildings", icon: "⌂" },
   { label: "Leaders",      href: "/admin/dashboard/leaders",   icon: "✦" },
   { label: "Gallery",      href: "/admin/dashboard/gallery",   icon: "🖼" },
+  { label: "Bible Verse",  href: "/admin/dashboard/verse",     icon: "✝" },
   { label: "Bulletins",    href: "/admin/dashboard/bulletins", icon: "📋" },
   { label: "Theme",        href: "/admin/dashboard/theme",       icon: "🎨" },
   { label: "Events",       href: "/admin/dashboard/events",      icon: "◷" },
