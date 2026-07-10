@@ -424,8 +424,6 @@ export default function HomePage({ content }: { content: SiteContent }) {
   const [bulletinPage, setBulletinPage] = useState(0);
   const [selectedMission, setSelectedMission] = useState<MissionItem | null>(null);
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [subEmail, setSubEmail] = useState("");
-  const [subStatus, setSubStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const tc = THEME_COLORS[content.activeTheme ?? "default"];
   const isChristmas = content.activeTheme === "christmas";
@@ -1216,58 +1214,6 @@ export default function HomePage({ content }: { content: SiteContent }) {
           )}
         </div>
       )}
-
-      {/* ── CTA / SUBSCRIBE BANNER ─────────────────────────────────── */}
-      <section className="py-20" style={{ backgroundColor: tc.accent }}>
-        <div className="max-w-2xl mx-auto text-center px-4 sm:px-6">
-          <h2 className="text-4xl lg:text-5xl text-white mb-5">{l.cta.heading}</h2>
-          <p className="text-white/80 text-lg leading-relaxed mb-10">{l.cta.sub}</p>
-
-          {subStatus === "success" ? (
-            <p className="bg-white/20 text-white font-semibold px-6 py-4 rounded-2xl text-sm">
-              ✓ {l.cta.successMsg}
-            </p>
-          ) : (
-            <form
-              onSubmit={async (e) => {
-                e.preventDefault();
-                if (!subEmail.trim()) return;
-                setSubStatus("loading");
-                try {
-                  const res = await fetch("/api/subscribe", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: subEmail.trim() }),
-                  });
-                  if (res.ok) { setSubStatus("success"); setSubEmail(""); }
-                  else setSubStatus("error");
-                } catch { setSubStatus("error"); }
-              }}
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-            >
-              <input
-                type="email"
-                required
-                value={subEmail}
-                onChange={(e) => setSubEmail(e.target.value)}
-                placeholder={l.cta.placeholder}
-                className="flex-1 px-5 py-3.5 rounded-full text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-white/50"
-              />
-              <button
-                type="submit"
-                disabled={subStatus === "loading"}
-                className="bg-white hover:opacity-90 disabled:opacity-60 font-bold text-sm px-8 py-3.5 rounded-full transition-all shrink-0"
-                style={{ color: tc.accent }}
-              >
-                {subStatus === "loading" ? "…" : l.cta.button}
-              </button>
-            </form>
-          )}
-          {subStatus === "error" && (
-            <p className="text-white/70 text-xs mt-3">{l.cta.errorMsg}</p>
-          )}
-        </div>
-      </section>
 
       {/* ── SUNDAY BULLETIN ───────────────────────────────────────── */}
       {content.bulletin_items && content.bulletin_items.length > 0 && (

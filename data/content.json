@@ -93,10 +93,7 @@
     "cta": {
       "heading": "Stay Connected with PBC Hakha",
       "sub": "Subscribe to receive our latest news, events, and activities directly in your inbox.",
-      "button": "Subscribe",
-      "placeholder": "Enter your email address",
-      "successMsg": "Thank you! You have been subscribed successfully.",
-      "errorMsg": "Something went wrong. Please try again."
+      "button": "Subscribe"
     },
     "footer": {
       "tagline": "Growing together in faith, love, and community.",
@@ -228,11 +225,8 @@
     },
     "cta": {
       "heading": "PBC Hakha He Pehtlaihnak",
-      "sub": "Thawngtha thar, cawlcanghnak le hna pawl na inbox-ah dirh theih nading na email rak zet rawh.",
-      "button": "Subscribe",
-      "placeholder": "Email address na zet",
-      "successMsg": "Lawmh can! Na register a tling.",
-      "errorMsg": "A hlan lo. Thar in ttuan ko."
+      "sub": "PBC thawngthachimnak, catialnak le cawlcanghnak thawngpang pawl peh zul in na hmuh khawhnak ding caah hi ka hin subscribe rak tuah.",
+      "button": "Subscribe"
     },
     "footer": {
       "tagline": "Zumhnak, Dawtnak le Zatlang Bu sinah thang ti hna usih!",
