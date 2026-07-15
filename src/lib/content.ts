@@ -2,6 +2,11 @@ import fs from "fs";
 import path from "path";
 
 const contentPath = path.join(process.cwd(), "data", "content.json");
+const KV_KEY = "site_content";
+
+function useKV(): boolean {
+  return !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+}
 
 export type EventItem = {
   id: string;
@@ -122,11 +127,27 @@ export type SiteContent = {
   branding: BrandingConfig;
 };
 
-export function readContent(): SiteContent {
+function readContentLocal(): SiteContent {
   const raw = fs.readFileSync(contentPath, "utf-8");
   return JSON.parse(raw) as SiteContent;
 }
 
-export function writeContent(data: SiteContent): void {
+export async function readContent(): Promise<SiteContent> {
+  if (useKV()) {
+    try {
+      const { kv } = await import("@vercel/kv");
+      const data = await kv.get<SiteContent>(KV_KEY);
+      if (data) return data;
+    } catch { /* fall through to local */ }
+  }
+  return readContentLocal();
+}
+
+export async function writeContent(data: SiteContent): Promise<void> {
+  if (useKV()) {
+    const { kv } = await import("@vercel/kv");
+    await kv.set(KV_KEY, data);
+    return;
+  }
   fs.writeFileSync(contentPath, JSON.stringify(data, null, 2), "utf-8");
 }

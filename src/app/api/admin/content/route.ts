@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
   if (!isAuthenticated(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  return NextResponse.json(readContent());
+  return NextResponse.json(await readContent());
 }
 
 export async function PATCH(request: NextRequest) {
@@ -20,7 +20,7 @@ export async function PATCH(request: NextRequest) {
   }
 
   const { section, data } = await request.json();
-  const content = readContent();
+  const content = await readContent();
 
   if (section.startsWith("en.")) {
     (content.en as Record<string, unknown>)[section.slice(3)] = data;
@@ -44,7 +44,7 @@ export async function PATCH(request: NextRequest) {
     content.branding = data;
   }
 
-  writeContent(content);
+  await writeContent(content);
   revalidatePath("/");
   return NextResponse.json({ ok: true });
 }
