@@ -40,7 +40,7 @@ function ImageUploadField({ label, value, onChange, folder }: { label: string; v
       if (res.status === 401) { window.location.href = "/admin"; return; }
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Upload failed");
-      onChange(json.url);
+      onChange(json.path);
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Upload failed");
     } finally {
@@ -79,6 +79,7 @@ function ImageUploadField({ label, value, onChange, folder }: { label: string; v
 export default function BrandingPage() {
   const [form, setForm] = useState<BrandingConfig>(DEFAULT);
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [saveError, setSaveError] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/content")
@@ -92,6 +93,7 @@ export default function BrandingPage() {
 
   async function save() {
     setStatus("saving");
+    setSaveError("");
     try {
       const res = await fetch("/api/admin/content", {
         method: "PATCH",
@@ -99,10 +101,16 @@ export default function BrandingPage() {
         body: JSON.stringify({ section: "branding", data: form }),
       });
       if (res.status === 401) { window.location.href = "/admin"; return; }
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        throw new Error(json.error || `Server error ${res.status}`);
+      }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2500);
-    } catch { setStatus("error"); }
+    } catch (e: unknown) {
+      setSaveError(e instanceof Error ? e.message : "Unknown error");
+      setStatus("error");
+    }
   }
 
   return (
@@ -118,7 +126,7 @@ export default function BrandingPage() {
         </button>
       </div>
 
-      {status === "error" && <p className="text-red-500 text-sm bg-red-50 rounded-lg px-3 py-2 mb-4">Failed to save. Please try again.</p>}
+      {status === "error" && <p className="text-red-500 text-sm bg-red-50 rounded-lg px-3 py-2 mb-4">Failed to save: {saveError || "Please try again."}</p>}
 
       {/* Church Identity */}
       <div className="bg-white rounded-2xl p-6 shadow-sm mb-4">
