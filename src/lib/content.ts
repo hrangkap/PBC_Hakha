@@ -136,7 +136,7 @@ export async function readContent(): Promise<SiteContent> {
     try {
       const { list } = await import("@vercel/blob");
       if (!_contentBlobUrl) {
-        const { blobs } = await list({ prefix: BLOB_CONTENT_PATH, limit: 1 });
+        const { blobs } = await list({ prefix: BLOB_CONTENT_PATH, limit: 1, token: process.env.BLOB_READ_WRITE_TOKEN });
         _contentBlobUrl = blobs[0]?.url ?? null;
       }
       if (_contentBlobUrl) {
@@ -155,7 +155,9 @@ export async function writeContent(data: SiteContent): Promise<void> {
     const blob = await put(BLOB_CONTENT_PATH, JSON.stringify(data, null, 2), {
       access: "public",
       addRandomSuffix: false,
+      allowOverwrite: true,
       contentType: "application/json",
+      token: process.env.BLOB_READ_WRITE_TOKEN,
     });
     _contentBlobUrl = blob.url;
     return;

@@ -40,6 +40,7 @@ export async function POST(request: NextRequest) {
       const blob = await put(blobPath, bytes, {
         access: "public",
         contentType: file.type,
+        token: process.env.BLOB_READ_WRITE_TOKEN,
       });
       return NextResponse.json({ path: blob.url });
     } catch (e) {
