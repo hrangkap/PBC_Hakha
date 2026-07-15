@@ -1,9 +1,9 @@
-import { createHmac, scryptSync, timingSafeEqual } from "crypto";
+import { createHash, scryptSync, timingSafeEqual } from "crypto";
 
 export const COOKIE_NAME = "admin_session";
-export const COOKIE_MAX_AGE = 60 * 60 * 24 * 7; // 7 days in seconds
+export const COOKIE_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
-// ── Rate limiting (in-memory, best-effort) ───────────────────────────────────
+// ── Rate limiting (best-effort in-memory) ────────────────────────────────────
 declare global {
   // eslint-disable-next-line no-var
   var __adminFailedAttempts: Map<string, { count: number; resetAt: number }> | undefined;
@@ -35,36 +35,37 @@ export function clearFailedAttempts(ip: string): void {
   failedAttempts.delete(ip);
 }
 
-// ── Stateless HMAC session ───────────────────────────────────────────────────
-// Token format: "<expiry_ms>.<hmac_hex>"
-// Works across multiple Vercel serverless instances (no shared memory needed).
+// ── Deterministic stateless session ─────────────────────────────────────────
+// Session token = SHA-256("pbchk-session:" + AUTH_SECRET + ":" + ADMIN_PASSWORD).
+// Deterministic across every Vercel serverless instance — no shared state needed.
+// Changing ADMIN_PASSWORD automatically invalidates all existing sessions.
 
-function secret(): string {
-  return process.env.AUTH_SECRET ?? "pbchakha_fallback_secret";
+function expectedToken(): string {
+  const secret = process.env.AUTH_SECRET ?? "pbchakha_fallback_secret";
+  const pass = process.env.ADMIN_PASSWORD ?? "";
+  return createHash("sha256")
+    .update("pbchk-session:" + secret + ":" + pass)
+    .digest("hex");
 }
 
 export function createSession(): string {
-  const expiry = String(Date.now() + COOKIE_MAX_AGE * 1000);
-  const sig = createHmac("sha256", secret()).update(expiry).digest("hex");
-  return `${expiry}.${sig}`;
+  return expectedToken();
 }
 
 export function verifySession(token: string | undefined): boolean {
   if (!token) return false;
-  const dot = token.lastIndexOf(".");
-  if (dot === -1) return false;
-  const payload = token.slice(0, dot);
-  const sig = token.slice(dot + 1);
-  const expected = createHmac("sha256", secret()).update(payload).digest("hex");
+  const expected = expectedToken();
   try {
-    if (!timingSafeEqual(Buffer.from(sig, "hex"), Buffer.from(expected, "hex"))) return false;
+    return timingSafeEqual(
+      Buffer.from(token.slice(0, 64), "hex"),
+      Buffer.from(expected, "hex")
+    );
   } catch {
     return false;
   }
-  return Date.now() < parseInt(payload, 10);
 }
 
-// No-op — stateless tokens can't be server-side revoked; logout clears the cookie.
+// Logout clears the cookie; there's nothing server-side to revoke.
 export function destroySession(_token: string): void {}
 
 // ── Password check ───────────────────────────────────────────────────────────
@@ -85,7 +86,7 @@ export function checkPassword(input: string): boolean {
     }
   }
 
-  // Fallback: plain-text comparison
+  // Fallback: plain-text (also handles plain ADMIN_PASSWORD on Vercel)
   const correct = Buffer.from(stored);
   const attempt = Buffer.from(input);
   if (correct.length !== attempt.length) return false;
