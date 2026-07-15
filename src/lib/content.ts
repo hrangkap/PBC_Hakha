@@ -2,11 +2,10 @@ import fs from "fs";
 import path from "path";
 
 const contentPath = path.join(process.cwd(), "data", "content.json");
-const KV_KEY = "site_content";
+const BLOB_CONTENT_PATH = "content.json";
 
-function useKV(): boolean {
-  return !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
-}
+// Cache the blob URL — it never changes for a fixed path
+let _contentBlobUrl: string | null = null;
 
 export type EventItem = {
   id: string;
@@ -133,20 +132,32 @@ function readContentLocal(): SiteContent {
 }
 
 export async function readContent(): Promise<SiteContent> {
-  if (useKV()) {
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
-      const { kv } = await import("@vercel/kv");
-      const data = await kv.get<SiteContent>(KV_KEY);
-      if (data) return data;
+      const { list } = await import("@vercel/blob");
+      if (!_contentBlobUrl) {
+        const { blobs } = await list({ prefix: BLOB_CONTENT_PATH, limit: 1 });
+        _contentBlobUrl = blobs[0]?.url ?? null;
+      }
+      if (_contentBlobUrl) {
+        // Append timestamp to bypass CDN cache and always get fresh content
+        const res = await fetch(`${_contentBlobUrl}?_t=${Date.now()}`, { cache: "no-store" });
+        if (res.ok) return res.json();
+      }
     } catch { /* fall through to local */ }
   }
   return readContentLocal();
 }
 
 export async function writeContent(data: SiteContent): Promise<void> {
-  if (useKV()) {
-    const { kv } = await import("@vercel/kv");
-    await kv.set(KV_KEY, data);
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    const { put } = await import("@vercel/blob");
+    const blob = await put(BLOB_CONTENT_PATH, JSON.stringify(data, null, 2), {
+      access: "public",
+      addRandomSuffix: false,
+      contentType: "application/json",
+    });
+    _contentBlobUrl = blob.url;
     return;
   }
   fs.writeFileSync(contentPath, JSON.stringify(data, null, 2), "utf-8");
