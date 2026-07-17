@@ -181,7 +181,6 @@ const T = {
       eyebrow: "Upcoming Events",
       heading: "Join Us for What's Coming",
       viewAll: "View All Events",
-      register: "Register",
       items: [
         { day: "15", month: "Jun", title: "Youth Sunday Gathering", time: "10:00 AM", place: "PBC Main Hall" },
         { day: "22", month: "Jun", title: "Prayer & Fasting Week", time: "6:00 PM", place: "PBC Chapel" },
@@ -287,7 +286,6 @@ const T = {
       eyebrow: "Puai/Cawlcanghnak Tuah Ding Mi Pawl",
       heading: "Kan Kai Uh Hmannak",
       viewAll: "Puai/Cawlcanghnak Dihlak",
-      register: "Ming Zet",
       items: [
         { day: "15", month: "Jun", title: "Sungbawi Thausing Zumhnak", time: "10:00 AM", place: "PBC Inn Lian" },
         { day: "22", month: "Jun", title: "Thleihnak & Zuksaknak Hun", time: "6:00 PM", place: "PBC Chapel" },
@@ -982,7 +980,7 @@ export default function HomePage({ content }: { content: SiteContent }) {
 
           <div className="grid md:grid-cols-3 gap-6">
             {content.events_items.map((ev) => (
-              <div key={ev.id} className="border border-gray-100 rounded-3xl overflow-hidden hover:shadow-lg transition-shadow">
+              <div key={ev.id} className="group border border-gray-100 rounded-3xl overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 {/* Date header */}
                 <div className="px-6 py-5 flex items-center gap-5" style={{ backgroundColor: tc.primary }}>
                   <div className="text-center shrink-0">
@@ -995,27 +993,25 @@ export default function HomePage({ content }: { content: SiteContent }) {
                   </h3>
                 </div>
                 {/* Details */}
-                <div className="px-6 py-5">
-                  <div className="flex items-center gap-2 text-gray-400 text-sm mb-2">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-                    </svg>
+                <div className="px-6 py-6 space-y-3.5">
+                  <div className="flex items-center gap-3 text-gray-500 text-sm">
+                    <span className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${tc.accent}1A` }}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={tc.accent} strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+                      </svg>
+                    </span>
                     {ev.time}
                   </div>
-                  <div className="flex items-center gap-2 text-gray-400 text-sm mb-6">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
-                    </svg>
+                  <div className="flex items-center gap-3 text-gray-500 text-sm">
+                    <span className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: `${tc.accent}1A` }}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={tc.accent} strokeWidth="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+                      </svg>
+                    </span>
                     {lang === "en" ? ev.place_en : ev.place_hk}
                   </div>
-                  <a
-                    href="#"
-                    className="inline-block hover:brightness-90 text-white text-xs font-bold tracking-widest uppercase px-5 py-2.5 rounded-full transition-all"
-                    style={{ backgroundColor: tc.accent }}
-                  >
-                    {l.events.register}
-                  </a>
                 </div>
+                <div className="h-1 w-0 group-hover:w-full transition-all duration-300" style={{ backgroundColor: tc.accent }} />
               </div>
             ))}
           </div>

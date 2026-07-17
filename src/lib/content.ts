@@ -86,7 +86,7 @@ export type LangContent = {
   buildings: { eyebrow: string; heading: string };
   features: { eyebrow: string; heading: string; items: Array<{ label: string; body: string; link: string }> };
   mission: { eyebrow: string; heading: string; sub: string };
-  events: { eyebrow: string; heading: string; viewAll: string; register: string };
+  events: { eyebrow: string; heading: string; viewAll: string };
   verse: { text: string; ref: string };
   gallery: { eyebrow: string; heading: string; viewAll: string };
   cta: { heading: string; sub: string; button: string };
