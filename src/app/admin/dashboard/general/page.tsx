@@ -47,16 +47,14 @@ export default function GeneralPage() {
         fetch("/api/admin/content").then((r) => r.json()).then((d) => d.en),
         fetch("/api/admin/content").then((r) => r.json()).then((d) => d.hk),
       ]);
-      const reqs = [
+      const updates = [
         { section: "en.infoBar", data: enInfoBar },
         { section: "hk.infoBar", data: hkInfoBar },
         { section: "en.footer", data: { ...enFull.footer, ...enFooter } },
         { section: "hk.footer", data: { ...hkFull.footer, ...hkFooter } },
       ];
-      for (const body of reqs) {
-        const res = await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-        if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `HTTP ${res.status}`); }
-      }
+      const res = await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ updates }) });
+      if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `HTTP ${res.status}`); }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2500);
     } catch (e) {

@@ -151,23 +151,14 @@ export default function MissionPage() {
     setStatus("saving");
     setErrorMsg("");
     try {
-      const r1 = await fetch("/api/admin/content", {
+      const res = await fetch("/api/admin/content", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "en.mission", data: enSection }),
+        body: JSON.stringify({ updates: [{ section: "en.mission", data: enSection }, { section: "hk.mission", data: hkSection }] }),
       });
-      if (!r1.ok) {
-        const data = await r1.json().catch(() => ({}));
-        throw new Error(data.error || `HTTP ${r1.status}`);
-      }
-      const r2 = await fetch("/api/admin/content", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "hk.mission", data: hkSection }),
-      });
-      if (!r2.ok) {
-        const data = await r2.json().catch(() => ({}));
-        throw new Error(data.error || `HTTP ${r2.status}`);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${res.status}`);
       }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2000);

@@ -31,20 +31,12 @@ export default function VersePage() {
     setSaving(true);
     setErrorMsg("");
     try {
-      const [r1, r2] = await Promise.all([
-        fetch("/api/admin/content", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ section: "en.verse", data: en }),
-        }),
-        fetch("/api/admin/content", {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ section: "hk.verse", data: hk }),
-        }),
-      ]);
-      if (!r1.ok) { const d = await r1.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r1.status}`); }
-      if (!r2.ok) { const d = await r2.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r2.status}`); }
+      const res = await fetch("/api/admin/content", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ updates: [{ section: "en.verse", data: en }, { section: "hk.verse", data: hk }] }),
+      });
+      if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `HTTP ${res.status}`); }
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
     } catch (e) {

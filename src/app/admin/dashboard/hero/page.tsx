@@ -47,18 +47,12 @@ export default function HeroPage() {
     setStatus("saving");
     setErrorMsg("");
     try {
-      const r1 = await fetch("/api/admin/content", {
+      const res = await fetch("/api/admin/content", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "en.hero", data: en }),
+        body: JSON.stringify({ updates: [{ section: "en.hero", data: en }, { section: "hk.hero", data: hk }] }),
       });
-      if (!r1.ok) { const d = await r1.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r1.status}`); }
-      const r2 = await fetch("/api/admin/content", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "hk.hero", data: hk }),
-      });
-      if (!r2.ok) { const d = await r2.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r2.status}`); }
+      if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `HTTP ${res.status}`); }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2500);
     } catch (e) {

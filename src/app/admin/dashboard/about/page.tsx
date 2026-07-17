@@ -39,10 +39,12 @@ export default function AboutPage() {
     setStatus("saving");
     setErrorMsg("");
     try {
-      const r1 = await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "en.about", data: en }) });
-      if (!r1.ok) { const d = await r1.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r1.status}`); }
-      const r2 = await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "hk.about", data: hk }) });
-      if (!r2.ok) { const d = await r2.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r2.status}`); }
+      const res = await fetch("/api/admin/content", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ updates: [{ section: "en.about", data: en }, { section: "hk.about", data: hk }] }),
+      });
+      if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `HTTP ${res.status}`); }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2500);
     } catch (e) {
