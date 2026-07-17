@@ -50,6 +50,7 @@ const THEMES: ThemeConfig[] = [
 export default function ThemePage() {
   const [activeTheme, setActiveTheme] = useState<SeasonTheme>("default");
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/content")
@@ -62,6 +63,7 @@ export default function ThemePage() {
 
   async function applyTheme(id: SeasonTheme) {
     setStatus("saving");
+    setErrorMsg("");
     try {
       const res = await fetch("/api/admin/content", {
         method: "PATCH",
@@ -69,11 +71,15 @@ export default function ThemePage() {
         body: JSON.stringify({ section: "activeTheme", data: id }),
       });
       if (res.status === 401) { window.location.href = "/admin"; return; }
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
       setActiveTheme(id);
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2500);
-    } catch {
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
       setStatus("error");
     }
   }
@@ -90,7 +96,7 @@ export default function ThemePage() {
       </div>
 
       {status === "saved"  && <p className="text-green-600 text-sm bg-green-50 rounded-lg px-3 py-2 mb-4">✓ Theme applied — the website has been updated.</p>}
-      {status === "error"  && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4">Failed to save. Please try again.</p>}
+      {errorMsg && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4 break-all">{errorMsg}</p>}
       {status === "saving" && <p className="text-gray-500 text-sm bg-gray-50  rounded-lg px-3 py-2 mb-4">Applying theme…</p>}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

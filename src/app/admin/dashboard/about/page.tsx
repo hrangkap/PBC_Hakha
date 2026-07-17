@@ -21,6 +21,7 @@ export default function AboutPage() {
   const [en, setEn] = useState<AboutData>({ eyebrow: "", heading: "", p1: "", p2: "", cta: "" });
   const [hk, setHk] = useState<AboutData>({ eyebrow: "", heading: "", p1: "", p2: "", cta: "" });
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/content")
@@ -36,12 +37,18 @@ export default function AboutPage() {
 
   async function save() {
     setStatus("saving");
+    setErrorMsg("");
     try {
-      await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "en.about", data: en }) });
-      await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "hk.about", data: hk }) });
+      const r1 = await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "en.about", data: en }) });
+      if (!r1.ok) { const d = await r1.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r1.status}`); }
+      const r2 = await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "hk.about", data: hk }) });
+      if (!r2.ok) { const d = await r2.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r2.status}`); }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2500);
-    } catch { setStatus("error"); }
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
+      setStatus("error");
+    }
   }
 
   return (
@@ -74,7 +81,7 @@ export default function AboutPage() {
         <Field label="Button text" value={data.cta} onChange={(v) => update("cta", v)} />
       </div>
 
-      {status === "error" && <p className="text-red-500 text-sm mt-3">Failed to save. Please try again.</p>}
+      {errorMsg && <p className="text-red-500 text-sm mt-3 break-all">{errorMsg}</p>}
     </div>
   );
 }

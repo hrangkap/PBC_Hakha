@@ -22,6 +22,7 @@ export default function LeadersPage() {
   const [showAdd, setShowAdd] = useState(false);
   const [form, setForm]       = useState<FormState>(EMPTY);
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg]     = useState("");
   const [uploading, setUploading]   = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -50,17 +51,25 @@ export default function LeadersPage() {
 
   async function uploadPhoto(file: File) {
     setUploading(true);
-    const fd = new FormData();
-    fd.append("file", file);
-    fd.append("folder", "leaders");
-    const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
-    const data = await res.json();
-    if (data.path) set("image", data.path);
-    setUploading(false);
+    setErrorMsg("");
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("folder", "leaders");
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `Upload failed (${res.status})`);
+      if (data.path) set("image", data.path);
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Upload failed");
+    } finally {
+      setUploading(false);
+    }
   }
 
   async function persist(updated: LeaderItem[]) {
     setSaveStatus("saving");
+    setErrorMsg("");
     try {
       const res = await fetch("/api/admin/content", {
         method: "PATCH",
@@ -68,10 +77,16 @@ export default function LeadersPage() {
         body: JSON.stringify({ section: "leaders_items", data: updated }),
       });
       if (res.status === 401) { window.location.href = "/admin"; return; }
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
       setSaveStatus("saved");
       setTimeout(() => setSaveStatus("idle"), 2000);
-    } catch { setSaveStatus("error"); }
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
+      setSaveStatus("error");
+    }
   }
 
   function startEdit(item: LeaderItem) {
@@ -186,7 +201,7 @@ export default function LeadersPage() {
       </div>
 
       {saveStatus === "saved" && <p className="text-green-600 text-sm bg-green-50 rounded-lg px-3 py-2 mb-4">✓ Saved successfully</p>}
-      {saveStatus === "error" && <p className="text-red-500 text-sm bg-red-50 rounded-lg px-3 py-2 mb-4">Failed to save. Please try again.</p>}
+      {errorMsg && <p className="text-red-500 text-sm bg-red-50 rounded-lg px-3 py-2 mb-4 break-all">{errorMsg}</p>}
 
       {showAdd && (
         <div className="bg-white rounded-2xl p-6 shadow-sm mb-4 border-2 border-[#C9A454]">

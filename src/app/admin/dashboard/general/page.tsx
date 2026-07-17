@@ -23,6 +23,7 @@ export default function GeneralPage() {
   const [enFooter, setEnFooter] = useState<FooterData>({ tagline: "", quickLinks: "", services: "", contact: "", address: "", phone: "", email: "", copy: "", times: [] });
   const [hkFooter, setHkFooter] = useState<FooterData>({ tagline: "", quickLinks: "", services: "", contact: "", address: "", phone: "", email: "", copy: "", times: [] });
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/content").then((r) => (r.ok ? r.json() : null)).then((d) => { if (!d?.en) return;
@@ -40,18 +41,28 @@ export default function GeneralPage() {
 
   async function save() {
     setStatus("saving");
+    setErrorMsg("");
     try {
       const [enFull, hkFull] = await Promise.all([
         fetch("/api/admin/content").then((r) => r.json()).then((d) => d.en),
         fetch("/api/admin/content").then((r) => r.json()).then((d) => d.hk),
       ]);
-      await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "en.infoBar", data: enInfoBar }) });
-      await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "hk.infoBar", data: hkInfoBar }) });
-      await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "en.footer", data: { ...enFull.footer, ...enFooter } }) });
-      await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ section: "hk.footer", data: { ...hkFull.footer, ...hkFooter } }) });
+      const reqs = [
+        { section: "en.infoBar", data: enInfoBar },
+        { section: "hk.infoBar", data: hkInfoBar },
+        { section: "en.footer", data: { ...enFull.footer, ...enFooter } },
+        { section: "hk.footer", data: { ...hkFull.footer, ...hkFooter } },
+      ];
+      for (const body of reqs) {
+        const res = await fetch("/api/admin/content", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+        if (!res.ok) { const d = await res.json().catch(() => ({})); throw new Error(d.error || `HTTP ${res.status}`); }
+      }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2500);
-    } catch { setStatus("error"); }
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
+      setStatus("error");
+    }
   }
 
   return (
@@ -129,7 +140,7 @@ export default function GeneralPage() {
         </div>
       </div>
 
-      {status === "error" && <p className="text-red-500 text-sm mt-3">Failed to save. Please try again.</p>}
+      {errorMsg && <p className="text-red-500 text-sm mt-3 break-all">{errorMsg}</p>}
     </div>
   );
 }

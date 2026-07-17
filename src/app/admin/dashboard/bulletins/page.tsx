@@ -12,6 +12,7 @@ export default function BulletinsPage() {
   const [showAdd, setShowAdd]     = useState(false);
   const [form, setForm]           = useState<FormState>(EMPTY);
   const [status, setStatus]       = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg]   = useState("");
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -30,21 +31,23 @@ export default function BulletinsPage() {
 
   async function uploadImages(fileList: FileList) {
     setUploading(true);
+    setErrorMsg("");
     const uploaded: string[] = [];
+    const errors: string[] = [];
     for (const file of Array.from(fileList)) {
       try {
         const fd = new FormData();
         fd.append("file", file);
         fd.append("folder", "bulletins");
         const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
-        if (!res.ok) throw new Error(`Upload failed: ${res.status}`);
         const data = await res.json();
+        if (!res.ok) throw new Error(data.error || `Upload failed (${res.status})`);
         if (data.path) uploaded.push(data.path);
       } catch (e) {
-        console.error(e);
-        setStatus("error");
+        errors.push(`${file.name}: ${e instanceof Error ? e.message : "upload failed"}`);
       }
     }
+    if (errors.length > 0) setErrorMsg(errors.join(" · "));
     setForm((prev) => ({ ...prev, files: [...prev.files, ...uploaded] }));
     setUploading(false);
   }
@@ -55,6 +58,7 @@ export default function BulletinsPage() {
 
   async function persist(updated: BulletinItem[]) {
     setStatus("saving");
+    setErrorMsg("");
     try {
       const res = await fetch("/api/admin/content", {
         method: "PATCH",
@@ -62,10 +66,16 @@ export default function BulletinsPage() {
         body: JSON.stringify({ section: "bulletin_items", data: updated }),
       });
       if (res.status === 401) { window.location.href = "/admin"; return; }
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2000);
-    } catch { setStatus("error"); }
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
+      setStatus("error");
+    }
   }
 
   function startEdit(item: BulletinItem) {
@@ -186,7 +196,7 @@ export default function BulletinsPage() {
       </div>
 
       {status === "saved" && <p className="text-green-600 text-sm bg-green-50 rounded-lg px-3 py-2 mb-4">✓ Saved successfully</p>}
-      {status === "error"  && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4">Upload or save failed. Please try again.</p>}
+      {errorMsg && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4 break-all">{errorMsg}</p>}
 
       {showAdd && (
         <div className="bg-white rounded-2xl p-6 shadow-sm mb-4 border-2 border-[#C9A454]">

@@ -21,6 +21,7 @@ export default function HeroPage() {
   const [en, setEn] = useState<HeroData>({ eyebrow: "", title: ["", "", ""], sub: "", cta1: "", cta2: "" });
   const [hk, setHk] = useState<HeroData>({ eyebrow: "", title: ["", "", ""], sub: "", cta1: "", cta2: "" });
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/content")
@@ -44,20 +45,24 @@ export default function HeroPage() {
 
   async function save() {
     setStatus("saving");
+    setErrorMsg("");
     try {
-      await fetch("/api/admin/content", {
+      const r1 = await fetch("/api/admin/content", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ section: "en.hero", data: en }),
       });
-      await fetch("/api/admin/content", {
+      if (!r1.ok) { const d = await r1.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r1.status}`); }
+      const r2 = await fetch("/api/admin/content", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ section: "hk.hero", data: hk }),
       });
+      if (!r2.ok) { const d = await r2.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r2.status}`); }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2500);
-    } catch {
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
       setStatus("error");
     }
   }
@@ -107,7 +112,7 @@ export default function HeroPage() {
         </div>
       </div>
 
-      {status === "error" && <p className="text-red-500 text-sm mt-3">Failed to save. Please try again.</p>}
+      {errorMsg && <p className="text-red-500 text-sm mt-3 break-all">{errorMsg}</p>}
     </div>
   );
 }

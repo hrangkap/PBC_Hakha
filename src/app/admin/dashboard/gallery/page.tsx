@@ -165,6 +165,7 @@ export default function GalleryPage() {
 
   async function persist(updated: GalleryItem[]) {
     setStatus("saving");
+    setUploadError("");
     try {
       const res = await fetch("/api/admin/content", {
         method: "PATCH",
@@ -172,10 +173,14 @@ export default function GalleryPage() {
         body: JSON.stringify({ section: "gallery_items", data: updated }),
       });
       if (res.status === 401) { window.location.href = "/admin"; return; }
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2000);
-    } catch {
+    } catch (e) {
+      setUploadError(e instanceof Error ? e.message : "Save failed");
       setStatus("error");
     }
   }
@@ -279,7 +284,7 @@ export default function GalleryPage() {
       </div>
 
       {status === "saved"  && <p className="text-green-600 text-sm bg-green-50 rounded-lg px-3 py-2 mb-4">✓ Saved successfully</p>}
-      {status === "error"  && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4">Failed to save. Please try again.</p>}
+      {status === "error"  && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4 break-all">{uploadError || "Failed to save. Please try again."}</p>}
       {status === "saving" && <p className="text-gray-500 text-sm bg-gray-50  rounded-lg px-3 py-2 mb-4">Saving…</p>}
 
       {/* New album form */}

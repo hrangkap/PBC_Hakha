@@ -33,6 +33,7 @@ export default function BuildingsPage() {
   const [showAdd, setShowAdd] = useState(false);
   const [form, setForm]       = useState<FormState>(EMPTY);
   const [status, setStatus]   = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg]   = useState("");
   const [uploading, setUploading] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
 
@@ -51,17 +52,25 @@ export default function BuildingsPage() {
 
   async function uploadPhoto(file: File) {
     setUploading(true);
-    const fd = new FormData();
-    fd.append("file", file);
-    fd.append("folder", "buildings");
-    const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
-    const data = await res.json();
-    if (data.path) set("image", data.path);
-    setUploading(false);
+    setErrorMsg("");
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("folder", "buildings");
+      const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `Upload failed (${res.status})`);
+      if (data.path) set("image", data.path);
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Upload failed");
+    } finally {
+      setUploading(false);
+    }
   }
 
   async function persist(updated: BuildingItem[]) {
     setStatus("saving");
+    setErrorMsg("");
     try {
       const res = await fetch("/api/admin/content", {
         method: "PATCH",
@@ -69,10 +78,14 @@ export default function BuildingsPage() {
         body: JSON.stringify({ section: "buildings_items", data: updated }),
       });
       if (res.status === 401) { window.location.href = "/admin"; return; }
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2000);
-    } catch {
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
       setStatus("error");
     }
   }
@@ -183,7 +196,7 @@ export default function BuildingsPage() {
       </div>
 
       {status === "saved" && <p className="text-green-600 text-sm bg-green-50 rounded-lg px-3 py-2 mb-4">✓ Saved successfully</p>}
-      {status === "error" && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4">Failed to save. Please try again.</p>}
+      {errorMsg && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4 break-all">{errorMsg}</p>}
 
       {/* Add form */}
       {showAdd && (

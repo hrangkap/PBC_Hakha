@@ -10,6 +10,7 @@ export default function VersePage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/content")
@@ -28,21 +29,29 @@ export default function VersePage() {
 
   async function handleSave() {
     setSaving(true);
-    await Promise.all([
-      fetch("/api/admin/content", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "en.verse", data: en }),
-      }),
-      fetch("/api/admin/content", {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: "hk.verse", data: hk }),
-      }),
-    ]);
-    setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2500);
+    setErrorMsg("");
+    try {
+      const [r1, r2] = await Promise.all([
+        fetch("/api/admin/content", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ section: "en.verse", data: en }),
+        }),
+        fetch("/api/admin/content", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ section: "hk.verse", data: hk }),
+        }),
+      ]);
+      if (!r1.ok) { const d = await r1.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r1.status}`); }
+      if (!r2.ok) { const d = await r2.json().catch(() => ({})); throw new Error(d.error || `HTTP ${r2.status}`); }
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2500);
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
+    } finally {
+      setSaving(false);
+    }
   }
 
   if (loading) {
@@ -137,6 +146,8 @@ export default function VersePage() {
           </blockquote>
           <p className="text-[#C9A454] font-semibold text-sm">— {en.ref}</p>
         </div>
+
+        {errorMsg && <p className="text-red-500 text-sm bg-red-50 rounded-lg px-3 py-2 break-all">{errorMsg}</p>}
 
         {/* Save */}
         <div className="flex justify-end">

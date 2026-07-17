@@ -39,6 +39,7 @@ export default function MissionPage() {
   const [showAdd, setShowAdd]       = useState(false);
   const [form, setForm]             = useState<FormState>(EMPTY);
   const [status, setStatus]         = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg]     = useState("");
   const [uploading, setUploading]   = useState(false);
   const [uploadingBlockIdx, setUploadingBlockIdx] = useState<BlockIdx | null>(null);
   const coverFileRef = useRef<HTMLInputElement>(null);
@@ -90,36 +91,43 @@ export default function MissionPage() {
 
   async function uploadBlockImage(i: BlockIdx, file: File) {
     setUploadingBlockIdx(i);
+    setErrorMsg("");
     try {
       const fd = new FormData();
       fd.append("file", file);
       fd.append("folder", "mission");
       const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
-      if (!res.ok) throw new Error();
       const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `Upload failed (${res.status})`);
       if (data.path) updateBlock(i, { src: data.path } as Partial<ContentBlock>);
-    } catch { /* ignore */ }
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Upload failed");
+    }
     setUploadingBlockIdx(null);
   }
 
   // ── cover photo ─────────────────────────────────────────────────
   async function uploadCover(file: File) {
     setUploading(true);
+    setErrorMsg("");
     try {
       const fd = new FormData();
       fd.append("file", file);
       fd.append("folder", "mission");
       const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
-      if (!res.ok) throw new Error();
       const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `Upload failed (${res.status})`);
       if (data.path) setField("image", data.path);
-    } catch { /* ignore */ }
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Upload failed");
+    }
     setUploading(false);
   }
 
   // ── persist ─────────────────────────────────────────────────────
   async function persistItems(updated: MissionItem[]) {
     setStatus("saving");
+    setErrorMsg("");
     try {
       const res = await fetch("/api/admin/content", {
         method: "PATCH",
@@ -127,28 +135,46 @@ export default function MissionPage() {
         body: JSON.stringify({ section: "mission_items", data: updated }),
       });
       if (res.status === 401) { window.location.href = "/admin"; return; }
-      if (!res.ok) throw new Error();
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2000);
-    } catch { setStatus("error"); }
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
+      setStatus("error");
+    }
   }
 
   async function saveSection() {
     setStatus("saving");
+    setErrorMsg("");
     try {
-      await fetch("/api/admin/content", {
+      const r1 = await fetch("/api/admin/content", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ section: "en.mission", data: enSection }),
       });
-      await fetch("/api/admin/content", {
+      if (!r1.ok) {
+        const data = await r1.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${r1.status}`);
+      }
+      const r2 = await fetch("/api/admin/content", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ section: "hk.mission", data: hkSection }),
       });
+      if (!r2.ok) {
+        const data = await r2.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${r2.status}`);
+      }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2000);
-    } catch { setStatus("error"); }
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
+      setStatus("error");
+    }
   }
 
   function startEdit(item: MissionItem) {
@@ -387,7 +413,7 @@ export default function MissionPage() {
       </div>
 
       {status === "saved" && <p className="text-green-600 text-sm bg-green-50 rounded-lg px-3 py-2 mb-4">✓ Saved successfully</p>}
-      {status === "error"  && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4">Failed to save. Please try again.</p>}
+      {errorMsg && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4 break-all">{errorMsg}</p>}
 
       {/* Section heading editor */}
       <div className="bg-white rounded-2xl p-5 shadow-sm mb-6">

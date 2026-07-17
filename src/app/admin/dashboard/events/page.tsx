@@ -35,6 +35,7 @@ export default function EventsPage() {
   const [showAdd, setShowAdd] = useState(false);
   const [form, setForm]     = useState<FormState>(EMPTY);
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/content")
@@ -51,6 +52,7 @@ export default function EventsPage() {
 
   async function persist(updated: EventItem[]) {
     setStatus("saving");
+    setErrorMsg("");
     try {
       const res = await fetch("/api/admin/content", {
         method: "PATCH",
@@ -58,10 +60,14 @@ export default function EventsPage() {
         body: JSON.stringify({ section: "events_items", data: updated }),
       });
       if (res.status === 401) { window.location.href = "/admin"; return; }
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP ${res.status}`);
+      }
       setStatus("saved");
       setTimeout(() => setStatus("idle"), 2000);
-    } catch {
+    } catch (e) {
+      setErrorMsg(e instanceof Error ? e.message : "Save failed");
       setStatus("error");
     }
   }
@@ -132,7 +138,7 @@ export default function EventsPage() {
       </div>
 
       {status === "saved"  && <p className="text-green-600 text-sm bg-green-50 rounded-lg px-3 py-2 mb-4">✓ Saved successfully</p>}
-      {status === "error"  && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4">Failed to save. Please try again.</p>}
+      {errorMsg && <p className="text-red-500  text-sm bg-red-50   rounded-lg px-3 py-2 mb-4 break-all">{errorMsg}</p>}
 
       {/* Add form */}
       {showAdd && (
